@@ -1,12 +1,14 @@
-from django import forms
-from django.db import models
+from typing import Optional
 
-from modelcluster.fields import ParentalKey, ParentalManyToManyField
+from django import forms
+from django.core.handlers.wsgi import WSGIRequest
+from django.db import models
 from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from taggit.models import TaggedItemBase
-from wagtail.models import Page, Orderable
-from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
+from wagtail.fields import RichTextField
+from wagtail.models import Orderable, Page
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
@@ -27,7 +29,7 @@ class Author(models.Model):
         FieldPanel("author_image"),
     ]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
     class Meta:
@@ -49,7 +51,7 @@ class BlogIndexPage(Page):
         FieldPanel("intro"),
     ]
 
-    def get_context(self, request):
+    def get_context(self, request: WSGIRequest) -> dict:
         """Update context to include only published posts, ordered by reverse-chron."""
         context = super().get_context(request)
         blogpages = self.get_children().live().order_by("-first_published_at")
@@ -64,8 +66,9 @@ class BlogPage(Page):
     authors = ParentalManyToManyField("blog.Author", blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
 
-    def main_image(self):
+    def main_image(self) -> Optional["BlogPageGalleryImage"]:
         gallery_item = self.gallery_images.first()
+        print(type(gallery_item.image))
         if gallery_item:
             return gallery_item.image
         else:
@@ -111,7 +114,7 @@ class BlogPageGalleryImage(Orderable):
 
 
 class BlogTagIndexPage(Page):
-    def get_context(self, request):
+    def get_context(self, request: WSGIRequest) -> dict:
         tag = request.GET.get("tag")
         blogpages = BlogPage.objects.filter(tags__name=tag)
         context = super().get_context(request)

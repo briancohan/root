@@ -13,9 +13,7 @@
 {% with post=post.specific %}
 <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
 
-{% with post.main_image as main_image %}
-{% if main_image %}{% image main_image fill-160x100 %}{% endif %}
-{% endwith %}
+{% if post.main_image is not None %}{% image post.main_image fill-160x100 %}{% endif %}
 
 <p>{{ post.intro }}</p>
 {{ post.body|richtext }}
