@@ -13,8 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="blogpage",
             name="authors",
-            field=modelcluster.fields.ParentalManyToManyField(
-                blank=True, to="blog.author"
-            ),
+            field=modelcluster.fields.ParentalManyToManyField(blank=True, to="blog.author"),
         ),
     ]

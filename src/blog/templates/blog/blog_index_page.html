@@ -16,7 +16,7 @@
 {% if post.main_image is not None %}{% image post.main_image fill-160x100 %}{% endif %}
 
 <p>{{ post.intro }}</p>
-{{ post.body|richtext }}
+
 {% endwith %}
 {% endfor %}
 
