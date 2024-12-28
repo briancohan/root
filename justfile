@@ -10,6 +10,12 @@ dev:
     @uv run src/manage.py runserver
 
 
+# Make a new migration and apply it
+migrate:
+    @uv run src/manage.py makemigrations
+    @uv run src/manage.py migrate
+
+
 # Check formatting and syntax
 check:
     @uv run pre-commit run --all-files

@@ -50,6 +50,11 @@ ignore = [
 "**/tests.py" = ["S101"]
 "**/migrations/*" = ["ANN201", "ANN001", "N806"]
 
+[tool.mypy]
+exclude = [
+    "/migrations/"
+]
+
 [[tool.mypy.overrides]]
 module = [
     "django.apps",
