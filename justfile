@@ -10,6 +10,11 @@ dev:
     @uv run src/manage.py runserver
 
 
+# Start Tailwind
+tw:
+    @npx tailwindcss -i ./src/mysite/static/css/input.css -o ./src/mysite/static/css/style.css --watch --minify
+
+
 # Make a new migration and apply it
 migrate:
     @uv run src/manage.py makemigrations
