@@ -5,6 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "djangorestframework>=3.15.2",
+    "pygments>=2.19.1",
     "wagtail>=6.3.2",
 ]
 
@@ -60,8 +62,10 @@ module = [
     "django.apps",
     "django.conf.urls.static",
     "django.conf",
+    "django.contrib.auth.models",
     "django.contrib.staticfiles.urls",
     "django.contrib",
+    "django.core.handlers.wsgi",
     "django.core.management",
     "django.core.paginator",
     "django.core.wsgi",
@@ -75,14 +79,30 @@ module = [
     "modelcluster.contrib",
     "modelcluster.fields",
     "modelcluster",
+    "pygments",
+    "pygments.formatters.html",
+    "pygments.lexers",
+    "pygments.styles",
+    "rest_framework.decorators",
+    "rest_framework.response",
+    "rest_framework.routers",
+    "rest_framework.serializers",
+    "rest_framework",
     "taggit.models",
     "wagtail.admin.panels",
     "wagtail.admin",
+    "wagtail.blocks",
+    "wagtail.contrib.forms.models",
+    "wagtail.contrib.forms.panels",
+    "wagtail.contrib.settings.models",
     "wagtail.documents",
+    "wagtail.embeds.blocks",
     "wagtail.fields",
+    "wagtail.images.blocks",
     "wagtail.models",
     "wagtail.search",
     "wagtail.snippets.models",
+    "wagtail.snippets.views.snippets",
     "wagtail",
 ]
 ignore_missing_imports = true
