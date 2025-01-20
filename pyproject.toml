@@ -62,6 +62,7 @@ module = [
     "django.conf",
     "django.contrib.staticfiles.urls",
     "django.contrib",
+    "django.core.handlers.wsgi",
     "django.core.management",
     "django.core.paginator",
     "django.core.wsgi",
